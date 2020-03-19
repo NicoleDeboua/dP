@@ -1,22 +1,27 @@
 <?php
 /* $Id$ */
 /* {{{ Copyright (c) 2003-2005 The dotProject Development Team <core-developers@dotproject.net>
-
     This file is part of dotProject.
-    dotProject is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License
-    as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-    dotProject is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
-    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+    dotProject is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
 
-    You should have received a copy of the GNU General Public License along with dotProject; 
-    if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+    dotProject is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with dotProject; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 }}} */
 
 ini_set('display_errors', 1);
 
-if (defined('E_DEPRECATED')) { error_reporting(E_ALL & ~(E_DEPRECATED|E_NOTICE|E_STRICT));
-} else {	error_reporting (E_ALL & ~E_NOTICE);}
+if (defined('E_DEPRECATED')) {	error_reporting(E_ALL & ~(E_DEPRECATED|E_NOTICE|E_STRICT));
+} else {	error_reporting(E_ALL & ~E_NOTICE);}
 
 if (function_exists('date_default_timezone_set')) {
   # this is a bit of a hack in that it will guess from the system what the timezone is.
@@ -49,7 +54,6 @@ $baseUrl = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')
 $baseUrl .= safe_get_env('HTTP_HOST');
 // check if webserver is not running on default port                
 //if ($_SERVER['SERVER_PORT'] != 80 || $_SERVER['SERVER_PORT'] != 443) {  $baseUrl .= ':' . safe_get_env('SERVER_PORT'); }
-
 $pathInfo = safe_get_env('PATH_INFO');
 if (@$pathInfo) {   $baseUrl .= str_replace('\\','/',dirname($pathInfo));
 } else {  $baseUrl .= str_replace('\\','/', dirname(safe_get_env('SCRIPT_NAME')));}
