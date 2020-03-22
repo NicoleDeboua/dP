@@ -172,7 +172,6 @@ $mds2 = array();
 			<?php $s='companies'; 		if (getPermission($s,'access')) { ?> | <a href="./?m=companies&amp;">		<?php echo $AppUI->_('Companies');$mds1[]=$s;?></a><?php } ?> 				
 			<?php $s='departments';		if (getPermission($s,'access')) { ?> | <a href="./?m=departments&amp;">		<?php echo $AppUI->_('Departments');$mds1[]=$s;?></a><?php } ?>
 			<?php $s='contacts';		if (getPermission($s,'access')) { ?> | <a href="./?m=contacts&amp;">		<?php echo $AppUI->_('Contacts');$mds1[]=$s;?></a><?php } ?> 
-			<?php $s='resource_m';		if (getPermission($s,'access')) { ?> | <a href="./?m=resource_m&amp;">		<?php echo $AppUI->_('Resource Management');$mds1[]=$s;?></a> <?php } ?>	
 			<?php $s='forums';			if (getPermission($s,'access')) { ?> | <a href="./?m=forums&amp;">			<?php echo $AppUI->_('Forums');$mds1[]=$s;?></a> <?php } ?>				
 			|	
 			</td>
@@ -201,6 +200,7 @@ $mds2 = array();
 		<tr>
 			<td align="left" nowrap="nowrap"><font color="darkgrey"> <?php echo $AppUI->_('dP+>');?></font>
 			<?php $s='resources';		if (getPermission($s,'access')) { ?> \ <a href="./?m=resources&amp;">		<?php echo $AppUI->_('Resources');$mds1[]=$s;?></a> <?php } ?>
+			<?php $s='resource_m';		if (getPermission($s,'access')) { ?> \ <a href="./?m=resource_m&amp;">		<?php echo $AppUI->_('Resource Management');$mds1[]=$s;?></a> <?php } ?>	
 			<?php $s='dotproject_plus';	if (getPermission($s,'access')) { ?> \ <a href="./?m=dotproject_plus&amp;">	<?php echo $AppUI->_('dotProject+');$mds2[]=$s;?></a><?php } ?> 			
 			<?php $s='initiating'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=initiating&amp;">		<?php echo $AppUI->_('Initiating');$mds2[]=$s;?></a><?php } ?> 				
 			<?php $s='scopeplanning';	if (getPermission($s,'access')) { ?> \ <a href="./?m=scopeplanning&amp;">	<?php echo $AppUI->_('Scope Planning');$mds2[]=$s;?></a><?php } ?> 
