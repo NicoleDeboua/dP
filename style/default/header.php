@@ -44,19 +44,14 @@ $mds2 = array();
 					<td align="left"width="500" >
 						<?php echo $AppUI->_('Welcome'); ?></b>
 						&nbsp;
-						<b><?php echo $AppUI->user_first_name; ?>
-							<?php echo $AppUI->user_last_name; ?>
-						</b>
+						<b><?php echo $AppUI->user_first_name; ?>_<?php echo $AppUI->user_last_name; ?></b>
 					</td>
 					
 					<td align="left" width="320">
 						&nbsp;Дата:
 						<b><?php echo $AppUI->_($this_day->format("%Y-%m-%d")) ?></b>
 						&nbsp; ( <?php echo ($AppUI->_($this_day->format('%A')) ); ?> )
-						<?php /*
-						&nbsp;&nbsp;Время:
-						<b>	<?php echo $this_date->format($tf);?></b>
-						*/ ?>
+						<?php /* &nbsp;&nbsp;Время: <b>	<?php echo $this_date->format($tf);?></b> */ ?>
 					</td>
 					<td align="right" nowrap="nowrap"> 
 						<?php if (getPermission('calendar', 'access')) {
@@ -64,7 +59,7 @@ $mds2 = array();
 								· <b><a href="./index.php?m=tasks&amp;a=todo"><?php echo $AppUI->_('Todo');?></a></b> 
 								· <b><a href="./index.php?m=calendar&amp;a=day_view&amp;date=<?php echo $now->format(FMT_TIMESTAMP_DATE);?>"><?php echo $AppUI->_('Today');?></a></b> 
 								<?php } ?>
-								· <a href="./index.php?m=admin&amp;a=viewuser&amp;user_id=<?php echo $AppUI->user_id;?>"><?php echo $AppUI->_('My Info');?></a>
+								· <a href="./index.php?m=admin&amp;a=viewuser&amp;user_id=<?php echo $AppUI->user_id;?>"><img src="images/i-user.gif" width="16" height="16" alt="" border="0" /><?php echo $AppUI->_('My Info');?></a>
 								· <?php echo dPcontextHelp('Help');?> 
 								· <a href="?logout=-1"><?php echo $AppUI->_('Logout');?></a>
 								·
@@ -113,7 +108,8 @@ $mds2 = array();
 <tr>
 	<table class="menu1" align="left" border="0" cellspacing="2" cellpadding="2"  width="100%">
 		<tr>
-			<td nowrap="nowrap"><font color="darkgrey"> dP> </font>
+			<td nowrap="nowrap">
+			<img src="images/i-dPn.gif" width="16" height="16" alt="" border="0" /><font color="darkgrey"> dP> </font>
 			<?php $s='calendar'; 		if (getPermission($s,'access')) { ?> · <a href="./?m=calendar&amp;">		<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>	
 			<?php $s='macroprojects'; 	if (getPermission($s,'access')) { ?> · <a href="./?m=macroprojects&amp;">	<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
 			<?php $s='projects'; 		if (getPermission($s,'access')) { ?> · <a href="./?m=projects&amp;">		<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?> 
@@ -123,7 +119,6 @@ $mds2 = array();
 			<?php $s='ticketsmith';		if (getPermission($s,'access')) { ?> · <a href="./?m=ticketsmith&amp;">		<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?> 			
 			<?php $s='files'; 			if (getPermission($s,'access')) { ?> · <a href="./?m=files&amp;">			<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
 			<?php $s='links'; 			if (getPermission($s,'access')) { ?> · <a href="./?m=links&amp;">			<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
-			<?php $s='reports'; 		if (getPermission($s,'access')) { ?> · <a href="./?m=reports&amp;">			<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
 			<?php $s='journal'; 		if (getPermission($s,'access')) { ?> · <a href="./?m=journal&amp;">			<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>				
 			<?php $s='smartsearch';		if (getPermission($s,'access')) { ?> · <a href="./?m=smartsearch&amp;">		<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
 			·
@@ -168,15 +163,17 @@ $mds2 = array();
 <tr>
 	<table class="menu" align="left" border="0" cellspacing="0" cellpadding="3"  width="100%">
 		<tr>
-			<td align="left" nowrap="nowrap"><font color="darkgrey"> dP-> </font>
+			<td align="left" nowrap="nowrap">
+			<img src="images/i-dPn.gif" width="16" height="16" alt="" border="0" /><font color="darkgrey"> dP-> </font>
 			<?php $s='companies'; 		if (getPermission($s,'access')) { ?> | <a href="./?m=companies&amp;">		<?php echo $AppUI->_('Companies');$mds1[]=$s;?></a><?php } ?> 				
 			<?php $s='departments';		if (getPermission($s,'access')) { ?> | <a href="./?m=departments&amp;">		<?php echo $AppUI->_('Departments');$mds1[]=$s;?></a><?php } ?>
 			<?php $s='contacts';		if (getPermission($s,'access')) { ?> | <a href="./?m=contacts&amp;">		<?php echo $AppUI->_('Contacts');$mds1[]=$s;?></a><?php } ?> 
+			<?php $s='human_resources'; if (getPermission($s,'access')) { ?> | <a href="./?m=human_resources&amp;">	<?php echo $AppUI->_('Human Resources');$mds1[]=$s;?></a> <?php } ?>
 			<?php $s='forums';			if (getPermission($s,'access')) { ?> | <a href="./?m=forums&amp;">			<?php echo $AppUI->_('Forums');$mds1[]=$s;?></a> <?php } ?>				
 			|	
 			</td>
 
-			<td align="right" nowrap="nowrap">
+			<td align="right" nowrap="nowrap"><img src="images/i-dP.gif" width="16" height="16" alt="" border="0" />
 			<?php $s='system'; 			if (getPermission($s,'access')) { ?> | <a href="./?m=system&amp;">		<?php echo $AppUI->_('System Administration');$mds1[]=$s;?></a><?php } ?>
 			<?php $s='admin';			if (getPermission($s,'access')) { ?> | <a href="./?m=admin&amp;">		<?php echo $AppUI->_('Users');$mds1[]=$s;?></a> <?php } ?>
 			<?php $s='helpdesk';		if (getPermission($s,'access')) { ?> | <a href="./?m=helpdesk&amp;">	<?php echo $AppUI->_('Help Desk');$mds1[]=$s;?></a><?php } ?>		
@@ -198,22 +195,23 @@ $mds2 = array();
 <tr>
 	<table class="menu" align="left" border="0" cellspacing="0" cellpadding="3"  width="100%">
 		<tr>
-			<td align="left" nowrap="nowrap"><font color="darkgrey"> <?php echo $AppUI->_('dP+>');?></font>
+			<td align="left" nowrap="nowrap">
+			<img src="images/i-add-ons.gif" width="16" height="16" alt="" border="0" /><font color="darkgrey"> <?php echo $AppUI->_('dP+>');?></font>
 			<?php $s='resources';		if (getPermission($s,'access')) { ?> \ <a href="./?m=resources&amp;">		<?php echo $AppUI->_('Resources');$mds1[]=$s;?></a> <?php } ?>
 			<?php $s='resource_m';		if (getPermission($s,'access')) { ?> \ <a href="./?m=resource_m&amp;">		<?php echo $AppUI->_('Resource Management');$mds1[]=$s;?></a> <?php } ?>	
 			<?php $s='dotproject_plus';	if (getPermission($s,'access')) { ?> \ <a href="./?m=dotproject_plus&amp;">	<?php echo $AppUI->_('dotProject+');$mds2[]=$s;?></a><?php } ?> 			
-			<?php $s='initiating'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=initiating&amp;">		<?php echo $AppUI->_('Initiating');$mds2[]=$s;?></a><?php } ?> 				
 			<?php $s='scopeplanning';	if (getPermission($s,'access')) { ?> \ <a href="./?m=scopeplanning&amp;">	<?php echo $AppUI->_('Scope Planning');$mds2[]=$s;?></a><?php } ?> 
 			<?php $s='risks'; 			if (getPermission($s,'access')) { ?> \ <a href="./?m=risks&amp;">			<?php echo $AppUI->_('Risks');$mds2[]=$s;?></a><?php } ?>
 			<?php $s='costs'; 			if (getPermission($s,'access')) { ?> \ <a href="./?m=costs&amp;">			<?php echo $AppUI->_('Costs');$mds2[]=$s;?></a><?php } ?> 			
 			<?php $s='monitoringandcontrol'; if (getPermission($s,'access')) { ?> \ <a href="./?m=monitoringandcontrol&amp;">	<?php echo $AppUI->_('Monitoring and control');$mds2[]=$s;?></a><?php } ?> 
+			<?php $s='reports'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=reports&amp;"><?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
+			<?php $s='initiating'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=initiating&amp;">		<?php echo $AppUI->_('Initiating');$mds2[]=$s;?></a><?php } ?> 				
 			<?php $s='closure'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=closure&amp;">			<?php echo $AppUI->_('Closure');$mds2[]=$s;?></a><?php } ?> 				
 			\	
 			</td>
 
-			<td align="right" nowrap="nowrap">
+			<td align="right" nowrap="nowrap"><img src="images/i-add-ons.gif" width="16" height="16" alt="" border="0" />
 			<?php $s='timesheet';		if (getPermission($s,'access')) { ?> \ <a href="./?m=timesheet&amp;">		<?php echo $AppUI->_('Timesheet');$mds2[]=$s;?></a> <?php } ?>
-			<?php $s='human_resources'; if (getPermission($s,'access')) { ?> \ <a href="./?m=human_resources&amp;">	<?php echo $AppUI->_('Human Resources');$mds1[]=$s;?></a> <?php } ?>
 			<?php $s='timeplanning'; 	if (getPermission($s,'access')) { ?> \ <a href="./?m=timeplanning&amp;">	<?php echo $AppUI->_('Time Planning');$mds2[]=$s;?></a><?php } ?> 
 			<?php $s='timecard';		if (getPermission($s,'access')) { ?> \ <a href="./?m=timecard&amp;">		<?php echo $AppUI->_('Time Card'); $mds2[]=$s;?></a> <?php } ?>			
 			\
@@ -228,8 +226,8 @@ $mds2 = array();
 	<td  align="left">
 	<table  class="menu" border="0" cellpadding="3" cellspacing="0"  width="100%">
 		<tr>
-			<td><font color="darkgrey">AddOn></font>
-			\
+			<td><img src="images/i-add-on.gif" width="16" height="16" alt="" border="0" />
+			<font color="darkgrey">AddOn></font> \
 			<?php
 			$links = array();
 			foreach ($nav as $module) {
@@ -247,7 +245,7 @@ $mds2 = array();
 			\
 			</td>
 			
-			<td align="right" nowrap="nowrap">
+			<td align="right" nowrap="nowrap"><img src="images/i-add-on.gif" width="16" height="16" alt="" border="0" />
 			<?php $s='iGantt'; if (getPermission($s,'access')) { ?> \ <a href="./?m=igantt&amp;"><?php echo $AppUI->_('iGantt'); $mds2[]=$s;?></a> <?php } ?>	
 			\
 			</td>

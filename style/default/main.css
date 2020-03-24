@@ -49,7 +49,7 @@ TD.nav        {	color: #FFFFFF; }
 
 /* Standard table 'spreadsheet' style #2E7BAF #17568C #125792*/ 
 table.tbl 	  {	background: #EEE9D9; border: solid #D1D1D1 1px;}
-table.tbl TH  {	background-color: #A0A0A0; color: #FFFFFF; list-style-type: disc; list-style-position: inside; border: outset #D1D1D1 1px; font-weight: normal; text-align:center; }
+table.tbl TH  {	background-color: #125792; color: #FFFFFF; list-style-type: disc; list-style-position: inside; border: outset #D1D1D1 1px; font-weight: normal; text-align:center; }
 table.tbl td  { background-color: #ffffff;}
 
 /* a 'standard' table */
