@@ -1,0 +1,20 @@
+##
+## DO NOT MODIFY THIS FILE BY HAND!
+##
+"Billing Category Column"=>"Колонка категории счета",
+"Billing"=>"Счет (платеж)",
+"Date Range"=>"Период времени",
+"Employees"=>"Сотрудники",
+"List By Company"=>"Список фирм",
+"List By Department"=>"Список отделов",
+"List By Employee "=>"Список сотрудников",
+"List By Project"=>"Список проектов",
+"List By Task"=>"Список заданий",
+"Options"=>"Действия",
+"Payroll"=>"Платежная ведомость",
+"Show Details"=>"Показать подробно",
+"Show main report"=>"Показать главный отчёт",
+"Show project totals"=>"Показать итоги проекта",
+"Show work category totals"=>"Показать итоги категории работ",
+"Submit"=>"подтвердить",
+"Work Category Column"=>"Колонка категории работы",
