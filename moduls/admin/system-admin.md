@@ -1,18 +1,16 @@
----
-layout: module
-title: System Admin Module
 
 category: core-module
 status: cleanup
-
+title: System Admin Module
 module_name: System Admin
+layout: module
 module_path: system
 module_creator: dotProject
 module_devs: web2project
 module_version: 3.3
 module_source: https://github.com/web2project/web2project
 module_download: http://github.com/web2project/web2project/archive/master.zip
----
+
 
 ## Module Overview
 
