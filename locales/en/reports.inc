@@ -1,0 +1,20 @@
+##
+## DO NOT MODIFY THIS FILE BY HAND!
+##
+'Billing Category Column',
+'Billing',
+'Date Range',
+'Employees',
+'List By Company',
+'List By Department',
+'List By Employee ',
+'List By Project',
+'List By Task',
+'Options',
+'Payroll',
+'Show Details',
+'Show main report',
+'Show project totals',
+'Show work category totals',
+'Submit',
+'Work Category Column',

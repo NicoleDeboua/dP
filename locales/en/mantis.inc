@@ -1,0 +1,6 @@
+'Mantis Integrated',
+'ID',
+'Severity',
+'Priority',
+'Reproducibility',
+'Resolution',
