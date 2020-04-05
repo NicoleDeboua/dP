@@ -41,11 +41,9 @@ $pjobj = new CMacroProject;
 $working_hours = $dPconfig['daily_working_hours'];
 
 $q = new DBQuery;
-
 /* Load department info for the case where one
  * wants to see the macroprojectsWithOwnerInDeparment (PwOiD)
- * instead of the macroprojects related to the given department.
- */
+ * instead of the macroprojects related to the given department.  */
 $owner_ids = array();
 if ($addPwOiD && $department > 0) {
 	$q->addTable('users');
@@ -127,7 +125,7 @@ $graph->scale->tableTitle->Set($tableTitle);
 
 // Use TTF font if it exists
 // try commenting out the following two lines if gantt charts do not display
-if (is_file(TTF_DIR . 'FreeSansBold.ttf')) {	$graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}	
+if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}	
 $graph->scale->SetTableTitleBackground('#EEEEEE');
 $graph->scale->tableTitle->Show(true);
 
@@ -153,16 +151,10 @@ if ($start_date && $end_date) {
 		$d_start->Date($start);
 		$d_end->Date($end);
 		
-		if ($i == 0) {
-			$min_d_start = $d_start;
-			$max_d_end = $d_end;
-		} else {
-			if (Date::compare($min_d_start,$d_start)>0) {
-				$min_d_start = $d_start;
-			}
-			if (Date::compare($max_d_end,$d_end)<0) {
-				$max_d_end = $d_end;
-			}
+		if ($i == 0) { $min_d_start = $d_start; $max_d_end = $d_end;}
+		 else {
+			if (Date::compare($min_d_start,$d_start)>0) { $min_d_start = $d_start;	}
+			if (Date::compare($max_d_end,$d_end)<0) {	$max_d_end = $d_end;	}
 		}
 	}
 }
@@ -185,7 +177,7 @@ if (!is_array($macroprojects) || sizeof($macroprojects) == 0) {
 	$d = new CDate();
 	$bar = new GanttBar($row++, array(' '.$AppUI->_('No macroprojects found'),  ' ', ' ', ' '), 
 	                    $d->getDate(), $d->getDate(), ' ', 0.6);
-	$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
+	$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8); 
 	$bar->title->SetColor('red');
 	$graph->Add($bar);
 }
@@ -246,9 +238,7 @@ if (is_array($macroprojects)) {
 		                    $start, $actual_end, $cap, 0.6);
         $bar->progress->Set(min(($progress/100), 1));
 		
-        if (is_file(TTF_DIR."FreeSans.ttf")) {
-			$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 9);
-        }
+        if (is_file(TTF_DIR."DejaVuSans-Bold.ttf")) { $bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 9);  }
         $bar->SetFillColor('#' . $mp['macroproject_color_identifier']);
         $bar->SetPattern(BAND_SOLID, ('#' . $mp['macroproject_color_identifier']));
 		
@@ -263,7 +253,7 @@ if (is_array($macroprojects)) {
 			$bar->title->SetColor('darkgray');
 			$bar->SetColor('darkgray');
 			$bar->SetFillColor('gray');
-			//$bar->SetPattern(BAND_SOLID,'gray');
+			$bar->SetPattern(BAND_SOLID,'gray');
 			$bar->progress->SetFillColor('darkgray');
 			$bar->progress->SetPattern(BAND_SOLID,'darkgray',98);
         }

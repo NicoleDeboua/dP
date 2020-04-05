@@ -129,8 +129,7 @@ function showFullMacroProject() {
 </br>
 <form name="editFrm" method="post" action="?<?php 
 	foreach ($_GET as $key => $val) {	$url_query_string .= (($url_query_string) ? '&amp;' : '') . $key . '=' . $val;	}
-				echo ($url_query_string);
-				?>">
+				echo ($url_query_string);	?>">
 	<input type="hidden" name="display_option" value="<?php echo $display_option;?>" />
 <table class="tbl" align="center" border="0"  cellspacing="7" cellpadding="3" summary="macroprojects view gantt" width="98%">
 	<tr>
@@ -138,13 +137,11 @@ function showFullMacroProject() {
 			<table align="center" border="0"  cellspacing="3" cellpadding="0" summary="select dates for graphs" width="1000">
 				<tr>
 					<td valign="top">
-						<input type="checkbox" name="showLabels" id="showLabels" value='1' <?php 
-							echo (($showLabels==1) ? 'checked="checked"' : "");?> />
+						<input type="checkbox" name="showLabels" id="showLabels" value='1' <?php echo (($showLabels==1) ? 'checked="checked"' : "");?> />
 						<label for="showLabels"><?php echo $AppUI->_('Show captions');?></label>
 					</td>
 					<td valign="top">
-						<input type="checkbox" value='1' name="showInactive" id="showInactive" <?php 
-							echo (($showInactive==1) ? 'checked="checked"' : "");?> />
+						<input type="checkbox" value='1' name="showInactive" id="showInactive" <?php echo (($showInactive==1) ? 'checked="checked"' : "");?> />
 						<label for="showInactive"><?php echo $AppUI->_('Show Archived');?></label>
 					</td>
 					<?php /*
@@ -155,35 +152,29 @@ function showFullMacroProject() {
 					</td>
 					*/ ?>
 					<td valign="top">
-						<input type="checkbox" value='1' name="sortTasksByName" id="sortTasksByName" <?php 
-							echo (($sortTasksByName==1) ? 'checked="checked"' : "");?> />
+						<input type="checkbox" value='1' name="sortTasksByName" id="sortTasksByName" <?php echo (($sortTasksByName==1) ? 'checked="checked"' : "");?> />
 						<label for="sortTasksByName"><?php echo $AppUI->_('Sort Tasks By Name');?></label>
 					</td>
 					<td align="right" valign="top">
-						<?php 
-						echo arraySelect($macroprojFilter, 'macroproFilter', 'size="1" class="text"', $macroproFilter, true);?>
+						<?php echo arraySelect($macroprojFilter, 'macroproFilter', 'size="1" class="text"', $macroproFilter, true);?>
 					</td>
 					<td align="right">
-						<input type="button" class="button" value="<?php 
-							echo $AppUI->_('submit');?>" onclick='document.editFrm.display_option.value="custom";submit();' />
+						<input type="button" class="button" value="<?php echo $AppUI->_('submit');?>" onclick='document.editFrm.display_option.value="custom";submit();' />
 					</td>
 				</tr>
 			</table>
 			</br>
-			<?php // ========================================?>
 			
 			<table align="center" border="0" cellpadding="3" cellspacing="0"  summary="select dates for graphs" width="98%">
 					<tr>
 						<td align="left" valign="top" width="20">
 							<?php if ($display_option != "all") { ?>
 								<a href="javascript:scrollPrev()">
-									<img src="./images/prev.gif" width="16" height="16" alt="<?php 
-										echo $AppUI->_('previous');?>" border="0" />
+									<img src="./images/prev.gif" width="16" height="16" alt="<?php echo $AppUI->_('previous');?>" border="0" />
 								</a>
 							<?php } ?>
 						</td>
-						<td align="right" width="20" nowrap="nowrap">
-							<?php echo $AppUI->_('From');?>:
+						<td align="right" width="20" nowrap="nowrap"><?php echo $AppUI->_('From');?>:
 						</td>
 						<td align="left" width="50" nowrap="nowrap">
 							<input type="hidden" name="sdate" value="<?php 
@@ -196,24 +187,18 @@ function showFullMacroProject() {
 						</td>						
 						
 						<td align="center" valign="bottom" colspan="12">
-							<?php 
-							echo ("<a href='javascript:showThisMonth()'>" 
+							<?php echo ("<a href='javascript:showThisMonth()'>" 
 								. $AppUI->_('show this month') 
 								. "</a> : <a href='javascript:showFullMacroProject()'>" 
 								. $AppUI->_('show all') . "</a><br />"); 
 							?>
 						</td>
-						<td align="right" width="20" nowrap="nowrap">
-							<?php echo $AppUI->_('To');?>:
+						<td align="right" width="20" nowrap="nowrap"><?php echo $AppUI->_('To');?>:
 						</td>
 						<td align="left" width="50" nowrap="nowrap">
-							<input type="hidden" name="edate" value="<?php 
-								echo $end_date->format(FMT_TIMESTAMP_DATE);?>" />
-							<input type="text" class="text" name="show_edate" value="<?php 
-								echo $end_date->format($df);?>" size="12" disabled="disabled" />
-									<a href="javascript:popCalendar('edate')">
-										<img src="./images/calendar.gif" width="24" height="12" alt="" border="0" />
-									</a>
+							<input type="hidden" name="edate" value="<?php echo $end_date->format(FMT_TIMESTAMP_DATE);?>" />
+							<input type="text" class="text" name="show_edate" value="<?php echo $end_date->format($df);?>" size="12" disabled="disabled" />
+							<a href="javascript:popCalendar('edate')"><img src="./images/calendar.gif" width="24" height="12" alt="" border="0" /></a>
 						</td>
 						<td align="right" valign="top" width="20">
 							<?php if ($display_option != "all") { ?>
@@ -250,17 +235,12 @@ function showFullMacroProject() {
 								. '&amp;m_orig=' 			. $m_orig 
 								. '&amp;a_orig=' 			. $a_orig);
 							echo '<script>document.write(\'<img src="' . $src . '">\')</script>';
-							if (!dPcheckMem(32*1024*1024)) {
-								?>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								<?php
-									echo ('<span style="color: red; font-weight: bold;">'  
-										. $AppUI->_('invalid memory config') . '</span>');
-							}
-							?>
+							if (!dPcheckMem(32*1024*1024)) { ?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?php echo ('<span style="color: red; font-weight: bold;">' . $AppUI->_('invalid memory config') . '</span>');	} ?>
 						</td>
 					</tr>
 				</table>
