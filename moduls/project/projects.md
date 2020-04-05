@@ -21,7 +21,7 @@ The very essence of web2Project is the ability to effectively manage projects. T
 
 Creating your first Project is a deceptively simple task. Clicking “Project” on the navigation bar and then click “New Project” on the right or by selecting “New Project” from the upper-right dropdown (pictured), you will immediately be taken to the New Project Screen.
 
-<a href="/assets/docs/projects/addedit.png"><img src="/assets/docs/projects/thumb-addedit.png" /></a>
+
 
 * First, you should always give your Project a distinctive name and color. This will help distinguish it throughout the system for both you and your users.
 * Next, you must assign it to a Company. For many organizations, all projects will be assigned to the customer’s company for easier permissions management, but your organization may have different requirements.
@@ -31,7 +31,7 @@ Creating your first Project is a deceptively simple task. Clicking “Project”
 * The rest of the fields available are purely for display purposes and not related to the current functionality of the system. For example, the Target and Actual Budgets are available for editing but are not updated or tracked anywhere in the system. The two URLs (URL, Staging URL) are references to external websites which might be relevant to a project. They will not normally point to websites or pages internal to your Web2project.
 * Finally, your new Project must be saved by clicking “submit”. If for some reason, you have made a mistake in creating your project, you can edit or even delete it from the View Project page if you have the proper permissions.
 
-{% include icon-info.html %} There are five major features currently implemented concerning Project Templates.
+
 
 First, there are two primary date options:
 Selecting an Offset Date allows you to specify an arbitrary date in the future for the project to begin and Web2project will sequentially schedule all start and end dates into the future from this point.
@@ -45,7 +45,7 @@ Next, there are three different import options:
 
 ### View your Projects (Projects Index Page)
 
-<a href="/assets/docs/projects/index.png"><img src="/assets/docs/projects/thumb-index.png" /></a>
+
 
 When you click on Projects from the menu it takes you to the Projects List Page, also referred to as “The Queue”
 
@@ -70,8 +70,6 @@ Each tab contains a table where projects are listed. Each row represents a proje
 * The last column represents the project status. The project status also represents the tabs at the top of the queue.
 
 ### View a specific Project (Projects View Page)
-
-<a href="/assets/docs/projects/view.png"><img src="/assets/docs/projects/thumb-view.png" /></a>
 
 Clicking on the projects name in the projects list takes you to the project view page. This page displays important information about the project and other elements related to it.
 
