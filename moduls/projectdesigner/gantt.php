@@ -169,11 +169,8 @@ $graph->scale->actinfo->vgrid->SetColor('gray');
 $graph->scale->actinfo->SetColor('darkgray');
 
 if ($caller == 'todo') {
-	if ($showWork=='1') {
-	        $graph->scale->actinfo->SetColTitles(array( $AppUI->_('Task name', UI_OUTPUT_RAW), $AppUI->_('Project name', UI_OUTPUT_RAW), $AppUI->_('Work', UI_OUTPUT_RAW), $AppUI->_('Start', UI_OUTPUT_RAW), $AppUI->_('Finish', UI_OUTPUT_RAW)),array(180,50, 60, 60,60));
-	} else {
-	        $graph->scale->actinfo->SetColTitles(array( $AppUI->_('Task name', UI_OUTPUT_RAW), $AppUI->_('Project name', UI_OUTPUT_RAW), $AppUI->_('Dur.', UI_OUTPUT_RAW), $AppUI->_('Start', UI_OUTPUT_RAW), $AppUI->_('Finish', UI_OUTPUT_RAW)),array(180,50, 60, 60,60));
-	}
+	if ($showWork=='1') { $graph->scale->actinfo->SetColTitles(array( $AppUI->_('Task name', UI_OUTPUT_RAW), $AppUI->_('Project name', UI_OUTPUT_RAW), $AppUI->_('Work', UI_OUTPUT_RAW), $AppUI->_('Start', UI_OUTPUT_RAW), $AppUI->_('Finish', UI_OUTPUT_RAW)),array(180,50, 60, 60,60)); } 
+    else { $graph->scale->actinfo->SetColTitles(array( $AppUI->_('Task name', UI_OUTPUT_RAW), $AppUI->_('Project name', UI_OUTPUT_RAW), $AppUI->_('Dur.', UI_OUTPUT_RAW), $AppUI->_('Start', UI_OUTPUT_RAW), $AppUI->_('Finish', UI_OUTPUT_RAW)),array(180,50, 60, 60,60));}
 } else {
 	if ($showWork=='1') {
 	        $graph->scale->actinfo->SetColTitles(array( $AppUI->_('Task name', UI_OUTPUT_RAW), $AppUI->_('Work', UI_OUTPUT_RAW), $AppUI->_('Start', UI_OUTPUT_RAW), $AppUI->_('Finish', UI_OUTPUT_RAW)),array(210,45, 75,75));
@@ -220,12 +217,8 @@ if ($start_date && $end_date){
                         $min_d_start = $d_start;
                         $max_d_end = $d_end;
                 } else {
-                        if (Date::compare($min_d_start,$d_start)>0){
-                                $min_d_start = $d_start;
-                        }
-                        if (Date::compare($max_d_end,$d_end)<0){
-                                $max_d_end = $d_end;
-                        }
+                        if (Date::compare($min_d_start,$d_start)>0){ $min_d_start = $d_start;  }
+                        if (Date::compare($max_d_end,$d_end)<0){  $max_d_end = $d_end;   }
                 }
         }
 }
@@ -299,13 +292,13 @@ for($i = 0; $i < count(@$gantt_arr); $i ++ ) {
         if($hide_task_groups) $level = 0;
 
         $name = $a['task_name'];
-        if ( $locale_char_set=='utf-8' && function_exists('utf8_decode') ) { $name = utf8_decode($name);  }
+      //  if ( $locale_char_set=='utf-8' && function_exists('utf8_decode') ) { $name = utf8_decode($name);  }
         $name = strlen( $name ) > 54 ? substr( $name, 0, 53 ).'.' : $name ;
         $name = str_repeat(' ', $level).$name;
 		
 		if ($caller == 'todo') { 
 			$pname = $a['project_name'];
-	        if ( $locale_char_set=='utf-8' && function_exists('utf8_decode') ) { $pname = utf8_decode($pname);  }
+	    //    if ( $locale_char_set=='utf-8' && function_exists('utf8_decode') ) { $pname = utf8_decode($pname);  }
 	        $pname = strlen( $pname ) > 54 ? substr( $pname, 0, 53 ).'...'.substr( $pname, -5, 5 ): $pname ;
 		}
         //using new jpGraph determines using Date object instead of string
@@ -373,19 +366,16 @@ for($i = 0; $i < count(@$gantt_arr); $i ++ ) {
         	       $bar  = new MileStone ($row++,array($name, $pname, '', substr($s, 0, 10), substr($s, 0, 10)) , $a['task_start_date'], $s);
 		    else 
                    $bar  = new MileStone ($row++,array($name, '', substr($s, 0, 10), substr($s, 0, 10)) , $a['task_start_date'], $s);
+                //if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_BOLD,8);} 
                 $bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
                 //caption of milestone should be date
-                if ($showLabels=='1') {
-                        $caption = $start->format($df);
-                }
+                if ($showLabels=='1') { $caption = $start->format($df); }
                 $bar->title->SetColor('#CC0000');
                 $graph->Add($bar);
         } else {
                 $type = $a['task_duration_type'];
                 $dur = $a['task_duration'];
-                if ($type == 24) {
-                        $dur *= $dPconfig['daily_working_hours'];
-                }
+                if ($type == 24) { $dur *= $dPconfig['daily_working_hours']; }
 
                 if ($showWork=='1') {
                         $work_hours = 0;
@@ -425,15 +415,15 @@ for($i = 0; $i < count(@$gantt_arr); $i ++ ) {
                 $dur .= ' h';
                 $enddate = new CDate($end);
                 $startdate = new CDate($start);
-                if ($caller == 'todo')
-					$bar = new GanttBar($row++, array($name, $pname, $dur, $startdate->format($df), $enddate->format($df)), substr($start, 2, 8), substr($end, 2, 8), $cap, $a['task_dynamic'] == 1 ? 0.1 : 0.6);
-                else
-					$bar = new GanttBar($row++, array($name, $dur, $startdate->format($df), $enddate->format($df)), substr($start, 2, 8), substr($end, 2, 8), $cap, $a['task_dynamic'] == 1 ? 0.1 : 0.6);
+                if ($caller == 'todo') $bar = new GanttBar($row++, array($name, $pname, $dur, $startdate->format($df), $enddate->format($df)), substr($start, 2, 8), substr($end, 2, 8), $cap, $a['task_dynamic'] == 1 ? 0.1 : 0.6);
+                else 				$bar = new GanttBar($row++, array($name, $dur, $startdate->format($df), $enddate->format($df)), substr($start, 2, 8), substr($end, 2, 8), $cap, $a['task_dynamic'] == 1 ? 0.1 : 0.6);
                 $bar->progress->Set(min(($progress/100),1));
+                //if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_BOLD,8);} 
                 $bar->title->SetFont(FF_CUSTOM,FS_NORMAL,8);
             if($a['task_dynamic'] == 1){
             $bar->title->SetFont(FF_CUSTOM,FS_BOLD, 8);
-                    $bar->rightMark->Show();
+
+            $bar->rightMark->Show();
             $bar->rightMark->SetType(MARK_RIGHTTRIANGLE);
             $bar->rightMark->SetWidth(3);
             $bar->rightMark->SetColor('black');
