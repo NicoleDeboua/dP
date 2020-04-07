@@ -11,7 +11,7 @@ else $page_title = ($dPconfig['page_title'] == 'dotProject') ? $dPconfig['page_t
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 	<meta name="Description" content="dotProject Default Style" />
 	<meta name="Version" content="<?php echo @$AppUI->getVersion();?>" />
-	<meta http-equiv="Content-Type" content="text/html;charset=<?php echo isset($locale_char_set) ? $locale_char_set : 'UTF-8';?>" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8;" />
 	<title><?php echo @dPgetConfig('page_title');?></title>
 	<link rel="stylesheet" type="text/css" href="./style/<?php echo $uistyle;?>/main.css" media="all" />
 	<style type="text/css" media="all">@import "./style/<?php echo $uistyle;?>/main.css";</style>
@@ -169,6 +169,7 @@ $mds2 = array();
 			<?php $s='departments';		if (getPermission($s,'access')) { ?> | <a href="./?m=departments&amp;">		<?php echo $AppUI->_('Departments');$mds1[]=$s;?></a><?php } ?>
 			<?php $s='contacts';		if (getPermission($s,'access')) { ?> | <a href="./?m=contacts&amp;">		<?php echo $AppUI->_('Contacts');$mds1[]=$s;?></a><?php } ?> 
 			<?php $s='human_resources'; if (getPermission($s,'access')) { ?> | <a href="./?m=human_resources&amp;">	<?php echo $AppUI->_('Human Resources');$mds1[]=$s;?></a> <?php } ?>
+			<?php $s='reports'; 		if (getPermission($s,'access')) { ?> | <a href="./?m=reports&amp;">			<?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>			
 			<?php $s='forums';			if (getPermission($s,'access')) { ?> | <a href="./?m=forums&amp;">			<?php echo $AppUI->_('Forums');$mds1[]=$s;?></a> <?php } ?>				
 			|	
 			</td>
@@ -204,7 +205,6 @@ $mds2 = array();
 			<?php $s='risks'; 			if (getPermission($s,'access')) { ?> \ <a href="./?m=risks&amp;">			<?php echo $AppUI->_('Risks');$mds2[]=$s;?></a><?php } ?>
 			<?php $s='costs'; 			if (getPermission($s,'access')) { ?> \ <a href="./?m=costs&amp;">			<?php echo $AppUI->_('Costs');$mds2[]=$s;?></a><?php } ?> 			
 			<?php $s='monitoringandcontrol'; if (getPermission($s,'access')) { ?> \ <a href="./?m=monitoringandcontrol&amp;">	<?php echo $AppUI->_('Monitoring and control');$mds2[]=$s;?></a><?php } ?> 
-			<?php $s='reports'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=reports&amp;"><?php echo $AppUI->_($s);$mds[]=$s;?></a><?php } ?>
 			<?php $s='initiating'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=initiating&amp;">		<?php echo $AppUI->_('Initiating');$mds2[]=$s;?></a><?php } ?> 				
 			<?php $s='closure'; 		if (getPermission($s,'access')) { ?> \ <a href="./?m=closure&amp;">			<?php echo $AppUI->_('Closure');$mds2[]=$s;?></a><?php } ?> 				
 			\	
