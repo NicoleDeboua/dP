@@ -1,11 +1,10 @@
-<?php /* TASKS $Id$ */
+<?php /* TASKS $Id$ Gantt.php - by J. Christopher Pereira */
 if (!defined('DP_BASE_DIR')) { die('You should not access this file directly.'); }
 global $caller, $locale_char_set;
 global $user_id, $dPconfig;
 include ($AppUI->getLibraryClass('jpgraph/src/jpgraph'));
 include ($AppUI->getLibraryClass('jpgraph/src/jpgraph_gantt'));
-/* Gantt.php - by J. Christopher Pereira
- * TASKS $Id$  */
+
 $showLabels = (int)dPgetParam($_GET, 'showLabels', 0);
 $showWork = (int)dPgetParam($_GET, 'showWork', 0);
 $sortByName = (int)dPgetParam($_GET, 'sortByName', 0);
@@ -30,7 +29,6 @@ if ($project_id > 0) {
 }
 
 $q = new DBQuery;
-
 // pull valid projects and their percent complete information
 $q->addTable('projects', 'pr');
 $q->addQuery('project_id, project_color_identifier, project_name' . ', project_start_date, project_end_date');
@@ -66,7 +64,7 @@ if ($caller == 'todo') {
 	if (!$showLowTasks) { $q->addWhere('task_priority >= 0'); 	}
 	if (!$showHoldProjs) {$q->addWhere('project_status != 4'); 	}
 	if (!$showDynTasks) { $q->addWhere('task_dynamic != 1'); 	}
-	if ($showPinned) {    $q->addWhere('task_pinned = 1'); 	}
+	if ($showPinned)	{ $q->addWhere('task_pinned = 1'); 	}
 	
  	$q->addGroup('t.task_id');
 	$q->addOrder((($sortByName) ? 't.task_name, ' : '') . 't.task_end_date, t.task_priority DESC');
@@ -157,7 +155,7 @@ if ($caller != 'todo') {
 	            ? $projects[$project_id]['project_end_date'] : $criticalTasks[0]['task_end_date']);
 }
 $start_date = dPgetCleanParam($_GET, 'start_date', $start_min);
-$end_date = dPgetCleanParam($_GET, 'end_date', $end_max);
+$end_date   = dPgetCleanParam($_GET, 'end_date', $end_max);
 
 $count = 0;
 $graph = new GanttGraph($width);
@@ -171,13 +169,12 @@ $graph->scale->week->SetStyle(WEEKSTYLE_FIRSTDAY);
 
 $pLocale = setlocale(LC_TIME, 0); // get current locale for LC_TIME
 $res = @setlocale(LC_TIME, $AppUI->user_lang[0]);
-if ($res) { // Setting locale doesn't fail
-	$graph->scale->SetDateLocale($AppUI->user_lang[0]);
-}
+if ($res) { $graph->scale->SetDateLocale($AppUI->user_lang[0]); } // Setting locale doesn't fail
 setlocale(LC_TIME, $pLocale);
 
 if ($start_date && $end_date) { $graph->SetDateRange($start_date, $end_date); }
-$graph->scale->actinfo->SetFont(FF_CUSTOM, FS_NORMAL, 8);
+if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $graph->scale->actinfo->SetFont(FF_CUSTOM,FS_BOLD,8);}  
+//$graph->scale->actinfo->SetFont(FF_CUSTOM, FS_NORMAL, 8);
 $graph->scale->actinfo->vgrid->SetColor('gray');
 $graph->scale->actinfo->SetColor('darkgray');
 
@@ -203,8 +200,9 @@ $graph->scale->tableTitle->Set($projects[$project_id]['project_name']);
 
 // Use TTF font if it exists
 // try commenting out the following two lines if gantt charts do not display
-$graph->scale->tableTitle->SetFont(FF_CUSTOM, FS_BOLD, 12);
-//$graph->scale->SetTableTitleBackground('#' . $projects[$project_id]['project_color_identifier']);
+if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}  
+//$graph->scale->tableTitle->SetFont(FF_CUSTOM, FS_BOLD, 12);
+//$graph->scale->SetTableTitleBackground('#' . $projects[$project_id]['project_color_identifier']); //background
 $graph->scale->tableTitle->Show(true);
 
 //-----------------------------------------
@@ -308,17 +306,17 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 	$level = $gantt_arr[$i][1];
 	if ($hide_task_groups) { $level = 0; }
 	$name = $a['task_name'];
-	if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) { $name = utf8_decode($name); }
+	//if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) { $name = utf8_decode($name); }
 	$name = ((mb_strlen($name) > 34) ? (mb_substr($name, 0, 33) . '.') : $name);
 	$name = (str_repeat(' ', $level) . $name);
 	
 	if ($caller == 'todo') {
 		$pname = $a['project_name'];
 		if ($locale_char_set=='utf-8') {
-			if (function_exists('mb_substr')) {
-				$pname = ((mb_strlen($pname) > 14 ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname));
-			}  else if (function_exists('utf8_decode')) { $pname = utf8_decode($pname);	}
-		} else { $pname = ((mb_strlen($pname) > 14) ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname); }
+			if (function_exists('mb_substr')) {	$pname = ((mb_strlen($pname) > 14 ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname)); }  
+			else if (function_exists('utf8_decode')) { $pname = utf8_decode($pname); }
+		} 
+		else { $pname = ((mb_strlen($pname) > 14) ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname); }
 	}
 	//using new jpGraph determines using Date object instead of string
 	$start_date = new CDate($a['task_start_date']);
@@ -358,24 +356,18 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 		$start_mile = $start_date_mile->getDate();
 		
 		$s = $start_date->format($df);
-		if ($caller == 'todo') {
-			$milestone_label_array = array($name, $pname, '', $s, $s);
-		} else {
-			$milestone_label_array = array($name, '', $s, $s);
-		}
+		if ($caller == 'todo') { $milestone_label_array = array($name, $pname, '', $s, $s);	}
+		 else {	$milestone_label_array = array($name, '', $s, $s);	}
 		$bar = new MileStone($row++, $milestone_label_array, $start_mile, $s);
-		$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
+		if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_BOLD,8);} 
+		//$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
 		//caption of milestone should be date
-		if ($showLabels == '1') {
-			$caption = $start_date_mile->format($df);
-		}
+		if ($showLabels == '1') { $caption = $start_date_mile->format($df); }
 		$bar->title->SetColor('#CC0000');
 	} else {
 		$type = $a['task_duration_type'];
 		$dur = $a['task_duration'];
-		if ($type == 24) {
-			$dur *= $dPconfig['daily_working_hours'];
-		}
+		if ($type == 24) { $dur *= $dPconfig['daily_working_hours']; }
 		if ($showWork=='1') {
 			$work_hours = 0;
 			$q->addTable('tasks', 't');
@@ -405,19 +397,16 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 		$enddate = new CDate($end);
 		$startdate = new CDate($start);
 		
-		if ($caller == 'todo') {
-			$bar_label_array = array($name, $pname, $dur, 
-			                         $startdate->format($df), $enddate->format($df));
-		} else {
-			$bar_label_array = array($name, $dur, $startdate->format($df), $enddate->format($df));
-		}
-		$bar = new GanttBar($row++, $bar_label_array, $start, $end, $cap, 
-		                    ($a['task_dynamic'] == 1 ? 0.1 : 0.6));
+		if ($caller == 'todo') { $bar_label_array = array($name, $pname, $dur, $startdate->format($df), $enddate->format($df));}
+		else {	$bar_label_array = array($name, $dur, $startdate->format($df), $enddate->format($df));	}
+		$bar = new GanttBar($row++, $bar_label_array, $start, $end, $cap, ($a['task_dynamic'] == 1 ? 0.1 : 0.6));
 		$bar->progress->Set(min(($progress/100),1));
-		$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
+		if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_NORMAL,8);} 
+		//$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
 		
 		if ($a['task_dynamic'] == 1) {
 			$bar->title->SetFont(FF_CUSTOM,FS_BOLD, 8);
+			
 			$bar->rightMark->Show();
 			$bar->rightMark->SetType(MARK_RIGHTTRIANGLE);
 			$bar->rightMark->SetWidth(3);
