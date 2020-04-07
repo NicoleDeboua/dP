@@ -184,16 +184,18 @@ if (!is_array($macroprojects) || sizeof($macroprojects) == 0) {
 
 if (is_array($macroprojects)) {
 	foreach ($macroprojects as $mp) {
-		if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) {
+		/*if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) {
 			$name = ((mb_strlen(utf8_decode($mp['macroproject_name'])) > 25) 
 			         ? (mb_substr(utf8_decode($mp['macroproject_name']), 0, 22) . '...') 
 			         : utf8_decode($mp['macroproject_name']));
 		} else {
+			*/
 			//while using charset different than UTF-8 we need not to use utf8_deocde
 			$name = ((mb_strlen($mp['macroproject_name']) > 25) ? (mb_substr($mp['macroproject_name'], 0, 22).'...') 
 			         : $mp['macroproject_name']) ;
-		}
-		
+		/*}
+		*/
+
 		//using new jpGraph determines using Date object instead of string
 		$start = (($mp['macroproject_start_date'] > '0000-00-00 00:00:00') ? $mp['macroproject_start_date'] 
 		          : date('Y-m-d H:i:s'));
