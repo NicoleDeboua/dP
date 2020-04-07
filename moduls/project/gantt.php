@@ -72,27 +72,16 @@ if ($department > 0) {
 		$q->addWhere('p.project_owner IN (' 
 		             . ((!empty($owner_ids)) ? implode(',', $owner_ids) : 0) . ')');
 	}
-} else if ($company_id != 0 && !$addPwOiD) {
-	$q->addWhere('project_company = ' . $company_id);
-}
+} else if ($company_id != 0 && !$addPwOiD) { $q->addWhere('project_company = ' . $company_id);}
 
-if ($proFilter == '-4') {
-	$q->addWhere('project_status != 7');
-} else if ($proFilter == '-3') {
-	$q->addWhere('project_owner = ' . $user_id);
-} else if ($proFilter == '-2') {
-	$q->addWhere('project_status != 3');
-} else if ($proFilter != '-1') {
-	$q->addWhere('project_status = ' . $proFilter);
-}
+if ($proFilter == '-4') { $q->addWhere('project_status != 7'); } 
+else if ($proFilter == '-3') { $q->addWhere('project_owner = ' . $user_id);} 
+else if ($proFilter == '-2') { $q->addWhere('project_status != 3');} 
+else if ($proFilter != '-1') { $q->addWhere('project_status = ' . $proFilter);}
 
-if ($user_id && $m_orig == 'admin' && $a_orig == 'viewuser') {
-	$q->addWhere('project_owner = ' . $user_id);
-}
+if ($user_id && $m_orig == 'admin' && $a_orig == 'viewuser') { $q->addWhere('project_owner = ' . $user_id);}
 
-if ($showInactive != '1') {
-	$q->addWhere('project_status != 7');
-}
+if ($showInactive != '1') { $q->addWhere('project_status != 7');}
 $pjobj->setAllowedSQL($AppUI->user_id, $q, null, 'p');
 $q->addGroup('p.project_id');
 $q->addOrder('project_name, task_end_date DESC');
@@ -117,14 +106,10 @@ $graph->scale->week->SetStyle(WEEKSTYLE_FIRSTDAY);
 
 $pLocale = setlocale(LC_TIME, 0); // get current locale for LC_TIME
 $res = @setlocale(LC_TIME, $AppUI->user_lang[0]);
-if ($res) { // Setting locale doesn't fail
-	$graph->scale->SetDateLocale($AppUI->user_lang[0]);
-}
+if ($res) { $graph->scale->SetDateLocale($AppUI->user_lang[0]); } // Setting locale doesn't fail
 setlocale(LC_TIME, $pLocale);
 
-if ($start_date && $end_date) {
-	$graph->SetDateRange($start_date, $end_date);
-}
+if ($start_date && $end_date) { $graph->SetDateRange($start_date, $end_date);}
 
 $graph->scale->actinfo->SetFont(FF_CUSTOM, FS_NORMAL, 8);
 $graph->scale->actinfo->vgrid->SetColor('gray');
@@ -206,15 +191,16 @@ if (!is_array($projects) || sizeof($projects) == 0) {
 
 if (is_array($projects)) {
 	foreach ($projects as $p) {
-		if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) {
+		/* if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) {
 			$name = ((mb_strlen(utf8_decode($p['project_name'])) > 25) 
 			         ? (mb_substr(utf8_decode($p['project_name']), 0, 22) . '...') 
 			         : utf8_decode($p['project_name']));
 		} else {
+			*/
 			//while using charset different than UTF-8 we need not to use utf8_deocde
 			$name = ((mb_strlen($p['project_name']) > 25) ? (mb_substr($p['project_name'], 0, 22).'...') 
 			         : $p['project_name']) ;
-		}
+		/* }*/
 		
 		//using new jpGraph determines using Date object instead of string
 		$start = (($p['project_start_date'] > '0000-00-00 00:00:00') ? $p['project_start_date'] 
