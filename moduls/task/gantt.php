@@ -198,11 +198,11 @@ if ($caller == 'todo') {
 }
 $graph->scale->tableTitle->Set($projects[$project_id]['project_name']);
 
-// Use TTF font if it exists
-// try commenting out the following two lines if gantt charts do not display
-if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}  
-//$graph->scale->tableTitle->SetFont(FF_CUSTOM, FS_BOLD, 12);
-//$graph->scale->SetTableTitleBackground('#' . $projects[$project_id]['project_color_identifier']); //background
+// Use TTF font if it exists try commenting out the following two lines if gantt charts do not display
+if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) {	$graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}
+$graph->scale->SetTableTitleBackground('#125792'); //$graph->scale->SetTableTitleBackground('#' . $projects[$project_id]['project_color_identifier']);
+$font_color = '#AADDAA';  //$font_color = bestColor($projects[$project_id]['project_color_identifier']);	
+$graph->scale->tableTitle->SetColor($font_color);
 $graph->scale->tableTitle->Show(true);
 
 //-----------------------------------------
