@@ -65,9 +65,8 @@ $q->addJoin('companies', 'c1', 'p.project_company = c1.company_id');
 if ($department > 0) {
 	$q->addJoin('project_departments', 'pd', 'pd.project_id = p.project_id');
 	
-	if (!$addPwOiD) {
-		$q->addWhere('pd.department_id = ' . $department);
-	} else {
+	if (!$addPwOiD) { $q->addWhere('pd.department_id = ' . $department); }
+	 else {
 		// Show Projects where the Project Owner is in the given department
 		$q->addWhere('p.project_owner IN (' 
 		             . ((!empty($owner_ids)) ? implode(',', $owner_ids) : 0) . ')');
@@ -124,16 +123,16 @@ $graph->scale->actinfo->SetColTitles(array($AppUI->_('Project name', UI_OUTPUT_R
 $tableTitle = (($proFilter == '-1') ? $AppUI->_('All Projects') : $projectStatus[$proFilter]);
 $graph->scale->tableTitle->Set($tableTitle);
 
-// Use TTF font if it exists
-// try commenting out the following two lines if gantt charts do not display
-if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) {	$graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}	
-$graph->scale->SetTableTitleBackground('#EEEEEE');
+// Use TTF font if it exists try commenting out the following two lines if gantt charts do not display
+if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) {	$graph->scale->tableTitle->SetFont(FF_CUSTOM,FS_BOLD,12);}
+$graph->scale->SetTableTitleBackground('#125792'); //$graph->scale->SetTableTitleBackground('#' . $projects[$project_id]['project_color_identifier']);
+$font_color = '#AADDAA';  //$font_color = bestColor($projects[$project_id]['project_color_identifier']);	
+$graph->scale->tableTitle->SetColor($font_color);
 $graph->scale->tableTitle->Show(true);
 
 //-----------------------------------------
 // nice Gantt image
-// if diff(end_date,start_date) > 90 days it shows only
-//week number
+// if diff(end_date,start_date) > 90 days it shows only week number
 // if diff(end_date,start_date) > 240 days it shows only
 //month number
 //-----------------------------------------
@@ -247,7 +246,7 @@ if (is_array($projects)) {
         $bar->progress->Set(min(($progress/100), 1));
 		
         if (is_file(TTF_DIR."DejaVuSans-Bold.ttf")) {	$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 9);  }
-        $bar->SetFillColor('#' . $p['project_color_identifier']);
+       // $bar->SetFillColor('#' . $p['project_color_identifier']);
         $bar->SetPattern(BAND_SOLID, '#' . $p['project_color_identifier']);
 		
 		//adding captions
