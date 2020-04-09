@@ -195,6 +195,7 @@
 "Private Entry"=>"Персональный вход",
 "Privileged"=>"Привилегированный",
 "Project"=>"Проект",
+"Project name"=>"Наименование проекта",
 "Project / Task(Tax)"=>"Проект / Задание (налог)",
 "Project Status"=>"Состояние проекта",
 "Project Type"=>"Тип проекта",
