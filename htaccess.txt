@@ -1,0 +1,15 @@
+AddDefaultCharset UTF-8
+AddCharset UTF8 *
+
+# AddDefaultCharset UTF8 # кодировка файлов, в которой по умолчанию отдаёт документы
+# AddCharset UTF8 .html # Пример: обрабатывает в данной кодировке html
+# AddCharset UTF8 * # Пример: обрабатывает в данной кодировке Все файлы
+
+# Обработка в данной кодировке определённого файла
+# <Files "index.html">
+# AddCharset UTF8 .html
+# </Files> 
+
+# CharsetDisable On # Отменяем перекодировку Сервером загруженных файлов
+# CharsetDefault UTF8 # Кодировка, передаваемая Сервером Браузеру по умолчанию
+# CharsetSourceEnc UTF8 # Принудительная Перекодировка ВСЕХ загруженных на сервер файлов
