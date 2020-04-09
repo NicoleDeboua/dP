@@ -1,10 +1,14 @@
-'Journal',
-'delete journal',
-'Edit Note',
-'Journal Entries',
-'New Note',
+##
+## DO NOT MODIFY THIS FILE BY HAND!
+##
 'Add note',
+'delete journal',
 'Description',
-'User',
-'Project',
+'Edit Note',
+'journal added',
+'Journal Entries',
 'journal updated',
+'Journal',
+'New Note',
+'Project',
+'User',
