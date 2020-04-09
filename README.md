@@ -1,5 +1,5 @@
 dP, information about release dotProject v.2.2.0 in my experience:
-patche for standart-version + stile (constant-menu & gif images)
+patche for standart-version + template(constant-menu & gif images)
 
 dP - dotProject - marvel soft, easy and functionaly.
 Goal - adaptation program for my special tasks and help other soft-integrators install this software.
@@ -14,7 +14,7 @@ dP - “dotProject” - замечательный программный про
 Все пояснения и комментарии смотрите в Вики.
 
 Вы можете скопировать файлы и записать их в стандартную версию разработчиков как "patche for standart-version",
-также есть шаблон  с константными позициями меню и gif-картинками. Предварительно сделайте резервную копию установленной вами версии программы. Со временем планирую в каждом модуле (папке) создать папку "doc" с описанием самого модуля или функционала программы.
+также есть шаблон с константными позициями меню и gif-картинками (мне так удобнее работать и по картинкам ориентироваться). Предварительно сделайте резервную копию установленной вами версии программы. Со временем планирую в каждом модуле (папке) создать папку "doc" с описанием самого модуля или функционала программы.
 
 ---------------------------------
 
