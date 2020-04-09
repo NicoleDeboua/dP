@@ -2,13 +2,13 @@
 ## DO NOT MODIFY THIS FILE BY HAND!
 ##
 "Add note"=>"Новая запись",
-"Description"=>"Запись",
+"delete journal"=>"удалить запись",
+"Description"=>"Комментарий",
 "Edit Note"=>"Редактировать запись",
-"Journal"=>"Блокнот",
+"journal added"=>"запись в блокнот добавлена",
 "Journal Entries"=>"Ведение блокнота по проектам",
+"journal updated"=>"блокнот обновлен",
+"Journal"=>"Блокнот",
 "New Note"=>"Cоздать новую запись",
 "Project"=>"Проект",
 "User"=>"Пользователь",
-"delete journal"=>"удалить запись",
-"journal updated"=>"блокнот обновлен",
-"journal added"=>"запись в блокнот добавлена",
