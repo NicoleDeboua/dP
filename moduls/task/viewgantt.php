@@ -66,7 +66,7 @@ if ($display_option == 'custom') {
 
 // setup the title block
 if (!@$min_view) {
-	$titleBlock = new CTitleBlock('Gantt Chart', 'applet-48.png', $m, "$m.$a");
+	$titleBlock = new CTitleBlock('Gantt Chart', 'logo_gantt.gif', $m, "$m.$a");
 	$titleBlock->addCrumb('?m=tasks', 'tasks list');
 	$titleBlock->addCrumb(('?m=projects&amp;a=view&amp;project_id=' . $project_id), 'view this project');
 	$titleBlock->show();
@@ -212,7 +212,7 @@ function showFullProject() {
 					. '&amp;end_date=' . $end_date->format('%Y-%m-%d'))) . "&width='" 
 					. "+((navigator.appName=='Netscape'?window.innerWidth:document.body.offsetWidth)*0.95)" 
 					. "+'&amp;showLabels=" . $showLabels . '&amp;showWork=' . $showWork 
-	        		. '&amp;sortByName=' . $sortByName . '&amp;showPinned=' . $showPinned 
+	        		. '&amp;sortByName='	. $sortByName . '&amp;showPinned=' . $showPinned 
 					. '&amp;showArcProjs=' . $showArcProjs . '&amp;showHoldProjs=' . $showHoldProjs 
 					. '&amp;showDynTasks=' . $showDynTasks . '&amp;showLowTasks=' . $showLowTasks 
 					. '&amp;caller=' . $a . '&amp;user_id=' . $user_id);

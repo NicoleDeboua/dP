@@ -305,6 +305,7 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 	$a = $gantt_arr[$i][0];
 	$level = $gantt_arr[$i][1];
 	if ($hide_task_groups) { $level = 0; }
+	
 	$name = $a['task_name'];
 	//if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) { $name = utf8_decode($name); }
 	$name = ((mb_strlen($name) > 34) ? (mb_substr($name, 0, 33) . '.') : $name);
@@ -316,7 +317,7 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 			if (function_exists('mb_substr')) {	$pname = ((mb_strlen($pname) > 14 ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname)); }  
 			else if (function_exists('utf8_decode')) { $pname = utf8_decode($pname); }
 		} 
-		else { $pname = ((mb_strlen($pname) > 14) ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname); }
+		else { $pname = ((mb_strlen($pname) > 24) ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname); }
 	}
 	//using new jpGraph determines using Date object instead of string
 	$start_date = new CDate($a['task_start_date']);
@@ -359,8 +360,7 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 		if ($caller == 'todo') { $milestone_label_array = array($name, $pname, '', $s, $s);	}
 		 else {	$milestone_label_array = array($name, '', $s, $s);	}
 		$bar = new MileStone($row++, $milestone_label_array, $start_mile, $s);
-		if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_BOLD,8);} 
-		//$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
+		if (is_file(TTF_DIR . 'DejaVuSans-Bold.ttf')) { $bar->title->SetFont(FF_CUSTOM,FS_BOLD,8);}  //$bar->title->SetFont(FF_CUSTOM, FS_NORMAL, 8);
 		//caption of milestone should be date
 		if ($showLabels == '1') { $caption = $start_date_mile->format($df); }
 		$bar->title->SetColor('#CC0000');
