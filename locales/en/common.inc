@@ -245,6 +245,7 @@
 "Project Status",
 "Project Type",
 "Project",
+"Project name",
 "ProjectDesigner",
 "projectdesigner",
 "Projects gantt",
